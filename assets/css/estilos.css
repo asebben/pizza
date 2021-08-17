@@ -273,6 +273,9 @@ footer{
 	transition: 1s;
 }  
 
+#opcoes_pedido{
+	display: none;
+}
 
 @media (min-width: 820px){ /* para desktop */
 	/******************************************************* layout com grid */
@@ -338,8 +341,23 @@ footer{
 		position: fixed;
 		bottom: 0;
 		right: 50px;
-		display: block;	 
+		display: flex;	 
+		align-items: flex-start;	
+		justify-content: space-between;
+		padding: 2px;		
 	} 	
+
+	#duvidas .btHelp{
+		background-color: #cccccc;
+		border: 1px solid black;
+		padding: 2px 5px;
+		margin: 2px;
+		cursor: pointer;
+	}
+
+	#duvidas #botoes{
+		display: flex;
+	}
 
 	footer{
 		flex-direction: row;

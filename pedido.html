@@ -48,7 +48,7 @@
             <!-- conteúdo específico -->
             <h2>Faça seu pedido</h2>
             <hr>
-            <form>
+            <form id="form_pedido">
                 <label for="tamanho">Selecione o tamanho da pizza:</label>
                 <select name="tamanho" id="tamanho">
                     <option value="">---- Selecione ----</option>
@@ -65,9 +65,9 @@
                         sabores</p>
                     <div id="cardapio">
                         <!-- container -->
-                        <div class="sabor">
+                        <div class="sabor" id="flavor1">
                             <label>
-                                <input type="checkbox" name="sabores[]" value="">
+                                <input type="checkbox" name="sabores[]" value="1">
                                 <div class="sabor_img">
                                     <img src="assets/images/calabresa.jpg" alt="calabresa">
                                 </div>
@@ -78,9 +78,9 @@
                             </label>
                         </div>
 
-                        <div class="sabor">
+                        <div class="sabor" id="flavor2">
                             <label>
-                                <input type="checkbox" name="sabores[]" value="">
+                                <input type="checkbox" name="sabores[]" value="2">
                                 <div class="sabor_img">
                                     <img src="assets/images/alho.jpg" alt="alho e óleo">
                                 </div>
@@ -91,9 +91,9 @@
                             </label>
                         </div>
 
-                        <div class="sabor">
+                        <div class="sabor" id="flavor3">
                             <label>
-                                <input type="checkbox" name="sabores[]" value="">
+                                <input type="checkbox" name="sabores[]" value="3">
                                 <div class="sabor_img">
                                     <img src="assets/images/atum.jpg" alt="atum">
                                 </div>
@@ -104,9 +104,9 @@
                             </label>
                         </div>
 
-                        <div class="sabor selecionado">
+                        <div class="sabor" id="flavor4">
                             <label>
-                                <input type="checkbox" name="sabores[]" value="">
+                                <input type="checkbox" name="sabores[]" value="4">
                                 <div class="sabor_img">
                                     <img src="assets/images/marguerita.jpg" alt="marguerita">
                                 </div>
@@ -117,9 +117,9 @@
                             </label>
                         </div>
 
-                        <div class="sabor selecionado">
+                        <div class="sabor" id="flavor5">
                             <label>
-                                <input type="checkbox" name="sabores[]" value="">
+                                <input type="checkbox" name="sabores[]" value="5">
                                 <div class="sabor_img">
                                     <img src="assets/images/milho.jpg" alt="milho">
                                 </div>
@@ -130,9 +130,9 @@
                             </label>
                         </div>
 
-                        <div class="sabor">
+                        <div class="sabor" id="flavor6">
                             <label>
-                                <input type="checkbox" name="sabores[]" value="">
+                                <input type="checkbox" name="sabores[]" value="6">
                                 <div class="sabor_img">
                                     <img src="assets/images/vegetariana.jpg" alt="vegetariana">
                                 </div>
@@ -143,9 +143,9 @@
                             </label>
                         </div>
 
-                        <div class="sabor">
+                        <div class="sabor" id="flavor7">
                             <label>
-                                <input type="checkbox" name="sabores[]" value="">
+                                <input type="checkbox" name="sabores[]" value="7">
                                 <div class="sabor_img">
                                     <img src="assets/images/mussarela.jpg" alt="mussarela">
                                 </div>
@@ -156,9 +156,9 @@
                             </label>
                         </div>
 
-                        <div class="sabor">
+                        <div class="sabor" id="flavor8">
                             <label>
-                                <input type="checkbox" name="sabores[]" value="">
+                                <input type="checkbox" name="sabores[]" value="8">
                                 <div class="sabor_img">
                                     <img src="assets/images/strogonoff.jpg" alt="strogonoff">
                                 </div>
@@ -169,9 +169,9 @@
                             </label>
                         </div>
 
-                        <div class="sabor selecionado">
+                        <div class="sabor" id="flavor9">
                             <label>
-                                <input type="checkbox" name="sabores[]" value="">
+                                <input type="checkbox" name="sabores[]" value="9">
                                 <div class="sabor_img">
                                     <img src="assets/images/frango.jpg" alt="frango">
                                 </div>
@@ -206,6 +206,11 @@
 
         <div id="duvidas">
             <div id="texto">Dúvidas? Fale com nossos atendentes</div>
+            <div id="botoes">
+                <span id="minHelp" class="btHelp" onclick="minHelp()">&or;</span>
+                <span id="maxHelp" class="btHelp" onclick="maxHelp()">&and;</span>
+                <span id="closeHelp" class="btHelp" onclick="closeHelp()">x</span>
+            </div>            
         </div>
 
         <footer>
@@ -222,4 +227,5 @@
     </div>
 </body>
 <script src="assets/js/funcoes.js"></script>
+<script src="assets/js/pedido.js"></script>
 </html>
