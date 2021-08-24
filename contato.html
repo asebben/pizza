@@ -48,20 +48,23 @@
         <!-- conteúdo específico -->
         <h2>Contato</h2>
         <hr>
-        <form>
+        <form method="get" id="form_contato" novalidate>
             <div>
                 <label for="nome" class="rotulo">Nome completo:</label>
                 <input type="text" name="nome" id="nome" size="50" maxlength="50" required autocomplete="off" autofocus>
+                <div id="erro_nome"></div>
             </div>
 
             <div>
                 <label for="email" class="rotulo">E-mail:</label>
                 <input type="email" name="enderecoEmail" id="email" placeholder="nome@dominio">
+                <div id="erro_email"></div>
             </div>
 
             <div>
                 <label for="fone" class="rotulo">Telefone:</label>
                 <input type="tel" name="telefone" id="fone" placeholder="(xx)xxxxx-xxxx">
+                <div id="erro_fone"></div>
             </div>
 
             <div>
@@ -73,12 +76,15 @@
                     <option value="3">Críticas</option>
                     <option value="4">Elogios</option>
                 </select>
+                <div id="erro_assunto"></div>
             </div>
 
 
             <div>
                 <label for="msg">Mensagem:</label><br>
-                <textarea name="mensagem" id="msg"></textarea>
+                <textarea name="mensagem" id="msg" cols="70" rows="5"></textarea>
+                <div id="contagem">0/100</div>
+                <div id="erro_msg"></div>
             </div>
 
             <div>
@@ -116,4 +122,5 @@
     </div>
 </body>
 <script src="assets/js/funcoes.js"></script>
+<script src="assets/js/contato.js"></script>
 </html>

@@ -164,6 +164,12 @@ input[type=submit]:hover, input[type=reset]:hover{
 	color: #267356;
 }
 
+.erro_form {
+	color: red;
+	font-style: italic;
+	font-size: 0.9em;
+}
+
 
 /****************************************************** imagem da home */
 #imgInicio {
@@ -276,6 +282,8 @@ footer{
 #opcoes_pedido{
 	display: none;
 }
+
+
 
 @media (min-width: 820px){ /* para desktop */
 	/******************************************************* layout com grid */
