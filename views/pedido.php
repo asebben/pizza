@@ -19,123 +19,29 @@
                         sabores</p>
                     <div id="cardapio">
                         <!-- container -->
-                        <div class="sabor" id="flavor1">
+
+                        <?php
+                        require_once "classes/SaborDAO.php";
+                        $obj = new SaborDAO();
+                        $lista = $obj->listar();
+                        foreach($lista as $sabor){
+                        ?>
+                        <div class="sabor" id="flavor<?=$sabor->getCodigo();?>">
                             <label>
-                                <input type="checkbox" name="sabores[]" value="1">
+                                <input type="checkbox" name="sabores[]" value="<?=$sabor->getCodigo();?>">
                                 <div class="sabor_img">
-                                    <img src="assets/images/calabresa.jpg" alt="calabresa">
+                                    <img src="assets/images/<?=($sabor->getNomeImagem() == "")? "sem_foto.jpg" : $sabor->getNomeImagem();?>" alt="imagem: <?=$sabor->getNome();?>">
                                 </div>
                                 <div class="sabor_descricao">
-                                    <strong>Calabresa</strong>
-                                    Molho, calabresa e mussarela
+                                    <strong><?=$sabor->getNome();?></strong>
+                                    <?=$sabor->getIngredientes();?>
                                 </div>
                             </label>
                         </div>
-
-                        <div class="sabor" id="flavor2">
-                            <label>
-                                <input type="checkbox" name="sabores[]" value="2">
-                                <div class="sabor_img">
-                                    <img src="assets/images/alho.jpg" alt="alho e óleo">
-                                </div>
-                                <div class="sabor_descricao">
-                                    <strong>Alho e Óleo</strong>
-                                    Molho, alho, óleo e mussarela
-                                </div>
-                            </label>
-                        </div>
-
-                        <div class="sabor" id="flavor3">
-                            <label>
-                                <input type="checkbox" name="sabores[]" value="3">
-                                <div class="sabor_img">
-                                    <img src="assets/images/atum.jpg" alt="atum">
-                                </div>
-                                <div class="sabor_descricao">
-                                    <strong>Atum</strong>
-                                    Molho, Atum, cebola e mussarela
-                                </div>
-                            </label>
-                        </div>
-
-                        <div class="sabor" id="flavor4">
-                            <label>
-                                <input type="checkbox" name="sabores[]" value="4">
-                                <div class="sabor_img">
-                                    <img src="assets/images/marguerita.jpg" alt="marguerita">
-                                </div>
-                                <div class="sabor_descricao">
-                                    <strong>Marguerita</strong>
-                                    Molho, mussarela, manjericão, tomate
-                                </div>
-                            </label>
-                        </div>
-
-                        <div class="sabor" id="flavor5">
-                            <label>
-                                <input type="checkbox" name="sabores[]" value="5">
-                                <div class="sabor_img">
-                                    <img src="assets/images/milho.jpg" alt="milho">
-                                </div>
-                                <div class="sabor_descricao">
-                                    <strong>Milho</strong>
-                                    Molho, milho e mussarela
-                                </div>
-                            </label>
-                        </div>
-
-                        <div class="sabor" id="flavor6">
-                            <label>
-                                <input type="checkbox" name="sabores[]" value="6">
-                                <div class="sabor_img">
-                                    <img src="assets/images/vegetariana.jpg" alt="vegetariana">
-                                </div>
-                                <div class="sabor_descricao">
-                                    <strong>Vegetariana</strong>
-                                    Molho, rúcula, tomate seco e mussarela
-                                </div>
-                            </label>
-                        </div>
-
-                        <div class="sabor" id="flavor7">
-                            <label>
-                                <input type="checkbox" name="sabores[]" value="7">
-                                <div class="sabor_img">
-                                    <img src="assets/images/mussarela.jpg" alt="mussarela">
-                                </div>
-                                <div class="sabor_descricao">
-                                    <strong>Mussarela</strong>
-                                    Molho, mussarela e orégano
-                                </div>
-                            </label>
-                        </div>
-
-                        <div class="sabor" id="flavor8">
-                            <label>
-                                <input type="checkbox" name="sabores[]" value="8">
-                                <div class="sabor_img">
-                                    <img src="assets/images/strogonoff.jpg" alt="strogonoff">
-                                </div>
-                                <div class="sabor_descricao">
-                                    <strong>Strogonoff</strong>
-                                    Molho, strogonoff e batata palha
-                                </div>
-                            </label>
-                        </div>
-
-                        <div class="sabor" id="flavor9">
-                            <label>
-                                <input type="checkbox" name="sabores[]" value="9">
-                                <div class="sabor_img">
-                                    <img src="assets/images/frango.jpg" alt="frango">
-                                </div>
-                                <div class="sabor_descricao">
-                                    <strong>Frango</strong>
-                                    Molho, frango, catupiry e mussarela
-                                </div>
-                            </label>
-                        </div>
-
+                        <?php
+                        }
+                        ?>
+                  
                     </div> <!-- fim container -->
                     <br><br>
                     <fieldset>

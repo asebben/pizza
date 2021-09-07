@@ -10,30 +10,21 @@
                 <th>Número de sabores</th>
                 <th>Preço</th>
             </tr>
-            <tr>
-                <td>Broto</td>
-                <td>1</td>
-                <td>25,00</td>
-            </tr>
-            <tr>
-                <td>Pequena</td>
-                <td>2</td>
-                <td>40,00</td>
-            </tr>
-            <tr>
-                <td>Média</td>
-                <td>2</td>
-                <td>45,00</td>
-            </tr>
-            <tr>
-                <td>Grande</td>
-                <td>3</td>
-                <td>55,00</td>
-            </tr>
-            <tr>
-                <td>Gigante</td>
-                <td>4</td>
-                <td>68,00</td>
-            </tr>
+            <?php
+            // forma mais fácil e direta de usar o PDo na página:
+            $conexao = new PDO("mysql:host=localhost;dbname=pizza", "admpizza", "12345");
+            $consulta = $conexao->prepare("SELECT * FROM tamanho");
+            $consulta->execute();
+            $array = $consulta->fetchAll(PDO::FETCH_ASSOC); 
+            foreach($array as $opcao) {         
+            ?>
+                <tr>
+                    <td><?=$opcao['nome']?></td>
+                    <td><?=$opcao['numOpcoes']?></td>
+                    <td>R$ <?=number_format($opcao['preco'], 2, ",", ".")?></td>
+                </tr>
+            <?php
+            }
+            ?>
         </table>
     </main>
