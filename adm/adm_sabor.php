@@ -1,17 +1,44 @@
 <?php
+// pagina que opera como um controller
+
 include_once "views/layout/topo.php";
 include_once "../classes/SaborDAO.php";
 if(!isset($_GET['acao'])){
     // nenhuma acao: carrega pg inicial de adm. de sabores 
     $titulo = "Lista de Sabores";
-    //...
+    $obj = new SaborDAO();
+    $lista = $obj->listar();
+    include "views/listaSabor.php";
 }
-else {    
+else {   
 	switch($_GET['acao']){
 
         case 'cadastra':
             $titulo = "Cadastro de Sabor";
-            //...           
+            if(!isset($_POST['cadastrar'])) { //ao carregar formulario
+                include "views/cadastraSabor.php";
+            }
+            else { // apos submeter os dados 
+                $novo = new Sabor();
+                $novo->setNome($_POST['field_nome']);
+                $novo->setIngredientes($_POST['field_ingredientes']);
+                $novo->setNomeImagem($_FILES['field_imagem']['name']);
+                $erros = $novo->validate();
+                if(count($erros) != 0){ // algum campo não validou
+                    include "views/cadastraSabor.php";
+                }
+                else{
+                    //sem erros de validacao, fazer o upload
+                    $destino = "../assets/images/".$_FILES['field_imagem']['name'];
+                    if(move_uploaded_file($_FILES['field_imagem']['tmp_name'], $destino)){
+                        // upload bem sucedido, insere no BD
+                        $bd = new SaborDAO();
+                        if($bd->inserir($novo))
+                            header("Location: adm_sabor.php");
+                    }
+                } 
+            }
+                     
             break;
 
         
@@ -22,8 +49,14 @@ else {
 
         
         case 'exclui':
-            $titulo = "Exclusão de Sabor";
-            //...            
+            //$titulo = "Exclusão de Sabor";
+            $bd = new SaborDAO();
+            $retorno = $bd->excluir($_GET['cod']);
+            if(is_bool($retorno))
+                header("Location: adm_sabor.php");
+            else{
+                echo "<p>$retorno</p>";
+            }    
             break;
         
         default:
@@ -31,7 +64,6 @@ else {
                       
     }// fim switch
 } // fim else
-echo $titulo;
 include_once "views/layout/rodape.php";
 ?>
 
