@@ -21,7 +21,7 @@
         }
 
         public function setNome($nome){
-            $this->nome = $nome;
+            $this->nome = filter_var($nome, FILTER_SANITIZE_STRING);
         }
 
         public function getIngredientes(){
@@ -29,7 +29,7 @@
         }
 
         public function setIngredientes($ingredientes){
-            $this->ingredientes = $ingredientes;
+            $this->ingredientes = filter_var($ingredientes, FILTER_SANITIZE_STRING);
         }
 
         public function getNomeImagem(){

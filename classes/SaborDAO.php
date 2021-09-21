@@ -23,7 +23,19 @@
         }
 
         public function buscar($cod){
-
+            try{
+                $consulta = $this->conexao->prepare("SELECT * FROM sabor WHERE codigo = :cod");
+                $consulta->bindParam(":cod", $cod);
+                $consulta->execute();
+                $resultado = $consulta->fetchAll(PDO::FETCH_CLASS, "Sabor");
+                if(count($resultado) == 1)
+                    return $resultado[0];
+                else
+                    return false;    
+            }
+            catch(PDOException $e){
+                echo "ERRO: ".$e->getMessage();
+            }
         }        
 
         public function inserir(Sabor $sabor){
@@ -40,7 +52,17 @@
         }
 
         public function alterar(Sabor $sabor){
-
+            try{
+                $consulta = $this->conexao->prepare("update sabor set nome=:nome, ingredientes=:ingred, nomeImagem=:foto where codigo=:cod");
+                $consulta->bindParam(":nome", $sabor->getNome());
+                $consulta->bindParam(":ingred", $sabor->getIngredientes());
+                $consulta->bindParam(":foto", $sabor->getNomeImagem());
+                $consulta->bindParam(":cod", $sabor->getCodigo());
+                return $consulta->execute();                 
+            }
+            catch(PDOException $e){
+                echo "ERRO: ".$e->getMessage();
+            } 
         }
 
         public function excluir($cod){

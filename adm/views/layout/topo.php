@@ -1,3 +1,10 @@
+<?php
+session_start();
+if(!isset($_SESSION['logado']) || $_SESSION['logado'] == false){
+    echo "Acesso negado!";
+    die();
+}
+?>
 <!doctype html>
 <html lang="pt-br">
 
@@ -17,9 +24,9 @@
         <h1>Pizza Byte</h1>
         <p>Área de Administração</p>
         <div id="menu_topo">
-            Usuário: X 
+            Usuário: <?=$_SESSION['usuario']; ?>
             <br>
-            Acesso em: dd/mm/aaaa
+            Acesso em: <?=$_SESSION['inicio']; ?>
         </div>        
     </header>
 
@@ -29,6 +36,6 @@
             <li><a href="adm_sabor.php">Sabores</a></li>
             <li><a href="#.php">Clientes</a></li>
             <li><a href="#">Pedidos</a></li>
-            <li><a href="#">Sair</a></li>
+            <li><a href="sair.php">Sair</a></li>
         </ul>
     </nav>

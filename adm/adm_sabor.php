@@ -44,7 +44,35 @@ else {
         
         case 'altera':
             $titulo = "Alteração de Sabor";
-            //...            
+            if(!isset($_POST['alterar'])) { //ao carregar formulario
+               $obj = new SaborDAO();
+               $sabor = $obj->buscar($_GET['cod']);
+               if(is_object($sabor)) // registro com aquele codigo existe
+                   include "views/alteraSabor.php";
+               else // retornou falso; codigo nao existe na tabela
+                   header("Location: adm_sabor.php");     
+            }
+            else { // apos submeter os dados 
+                $atual = new Sabor();
+                $atual->setNome($_POST['field_nome']);
+                $atual->setIngredientes($_POST['field_ingredientes']);
+                $atual->setNomeImagem($_FILES['field_imagem']['name']);
+                $atual->setCodigo($_POST['cod']);
+                $erros = $atual->validate();
+                if(count($erros) != 0){ // algum campo não validou
+                    include "views/alteraSabor.php";
+                }
+                else{
+                    //sem erros de validacao, fazer o upload
+                    $destino = "../assets/images/".$_FILES['field_imagem']['name'];
+                    if(move_uploaded_file($_FILES['field_imagem']['tmp_name'], $destino)){
+                        // upload bem sucedido, altera no BD
+                        $bd = new SaborDAO();
+                        if($bd->alterar($atual))
+                            header("Location: adm_sabor.php");
+                    }
+                } 
+            }                        
             break;
 
         
