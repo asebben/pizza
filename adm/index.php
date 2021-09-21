@@ -3,6 +3,7 @@ if(isset($_POST['logar'])){
     $login = $_POST['login'];
     $senha = $_POST['senha'];
     if($login == 'admin'){ // login correto
+        // a senha eh pizza123
         if(password_verify($senha, '$2y$10$Izh5K2nk22X/IlUlYiM3DOHtUUPORvGjKOIgGjm8/C8KPF5bNOLxy')){ // senha correta
             session_start();
             $_SESSION['usuario'] = "admin";
