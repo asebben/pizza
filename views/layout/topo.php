@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!doctype html>
 <html lang="pt-br">
 
@@ -17,17 +20,22 @@
         <h1>Pizza Byte</h1>
         <p>Love at first byte</p>
         <div id="menu_topo">
-            Olá, visitante! (<a href='#'>entrar</a>)
+            <?php
+            if(isset($_SESSION['nome'])) // esta logado
+                echo "Olá, {$_SESSION['nome']} (<a href='index.php?acao=sair'>sair</a>)";
+            else    
+                echo "Olá, visitante! (<a href='index.php?acao=cliente'>entrar</a>)";
+            ?>
             &nbsp;&nbsp;
-            <a href="#">meu carrinho</a>
+            <a href="index.php?acao=carrinho">meu carrinho</a>
         </div>
         <div id="menu_topo_mobile">
             <span class="material-icons">
-                <a href='#'>login</a>
+                <a href='index.php?acao=cliente'>login</a>
             </span> 
             &nbsp;           
             <span class="material-icons">
-                <a href='#'>shopping_cart</a>
+                <a href='index.php?acao=carrinho'>shopping_cart</a>
             </span>
         </div>
         <span id="showMenu" onclick="showMenu()">&equiv; Menu</span>

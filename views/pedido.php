@@ -2,7 +2,7 @@
             <!-- conteúdo específico -->
             <h2>Faça seu pedido</h2>
             <hr>
-            <form id="form_pedido">
+            <form id="form_pedido" method="post" action="index.php?acao=addcarrinho">
                 <label for="tamanho">Selecione o tamanho da pizza:</label>
                 <select name="tamanho" id="tamanho">
                     <option value="">---- Selecione ----</option>
@@ -15,8 +15,12 @@
                 <br>
                 <br>
                 <div id="opcoes_pedido">
+                    <p>Preço: <strong id="mostraPreco">0</strong></p>
                     <p>Você selecionou <strong id="numSabores">0</strong> de <strong id="limiteSabores">0</strong>
                         sabores</p>
+                    <input type="hidden" name="preco" id="preco">
+                    <input type="hidden" name="codTamanho" id="codTamanho">
+                    <input type="hidden" name="nomeTamanho" id="nomeTamanho">
                     <div id="cardapio">
                         <!-- container -->
 
@@ -26,9 +30,9 @@
                         $lista = $obj->listar();
                         foreach($lista as $sabor){
                         ?>
-                        <div class="sabor" id="flavor<?=$sabor->getCodigo();?>">
+                        <div class="sabor" id="flavor<?=$sabor->getCodigo()."-".$sabor->getNome();?>">
                             <label>
-                                <input type="checkbox" name="sabores[]" value="<?=$sabor->getCodigo();?>">
+                                <input type="checkbox" name="sabores[]" value="<?=$sabor->getCodigo()."-".$sabor->getNome();?>">
                                 <div class="sabor_img">
                                     <img src="assets/images/<?=($sabor->getNomeImagem() == "")? "sem_foto.jpg" : $sabor->getNomeImagem();?>" alt="imagem: <?=$sabor->getNome();?>">
                                 </div>

@@ -1,11 +1,13 @@
 /* opcoes de tamanho x quantidade de opcoes */
-var sizeOptions = {
-    'b': 1,
-    'p': 2,
-    'm': 2,
-    'g': 3,
-    'gg': 4,
-}
+// var sizeOptions = {
+//     'b': 1,
+//     'p': 2,
+//     'm': 2,
+//     'g': 3,
+//     'gg': 4,
+// }
+
+var numOpcoes;
 
 /* funcao chamada quando ocorre mudanca no campo tamanho */
 function selectSize(){
@@ -15,8 +17,24 @@ function selectSize(){
     }
     else{
         document.getElementById("opcoes_pedido").style.display = "block";
-        document.getElementById("limiteSabores").innerHTML = sizeOptions[selectedSize];
+      //  document.getElementById("limiteSabores").innerHTML = sizeOptions[selectedSize];
         document.getElementById("numSabores").innerHTML = 0;
+
+        // ajax
+        let req = new XMLHttpRequest();
+        req.open("GET", "ajax/tamanho.php?sigla="+selectedSize, true);
+        req.send();
+        req.onreadystatechange = function(){
+            if (this.readyState == 4 && this.status == 200){
+                let dados = JSON.parse(this.responseText);
+                document.getElementById("mostraPreco").innerHTML = dados.preco;
+                document.getElementById("limiteSabores").innerHTML = dados.numOpcoes;
+                document.getElementById("preco").value = dados.preco;
+                document.getElementById("codTamanho").value = dados.codigo;
+                document.getElementById("nomeTamanho").value = dados.nome;
+            }
+        };
+        // fim ajax
 
         // limpar todos os checkboxes
         let checks = document.getElementsByName("sabores[]");
@@ -49,7 +67,7 @@ function updateCount(){
     let selectedSize = document.getElementById("tamanho").value;
     let total = countSelected();
     document.getElementById("numSabores").innerHTML = total;
-    if(total > sizeOptions[selectedSize]){
+    if(total > numOpcoes){
         alert("Você ultrapassou o número de sabores permitido");
     }
 }
@@ -76,7 +94,7 @@ for(let i = 0; i < checks.length; i++){
 function addToCart(event){
     let selectedSize = document.getElementById("tamanho").value;
     let total = countSelected();
-    if(total > sizeOptions[selectedSize]){
+    if(total > numOpcoes){
         alert("Você ultrapassou o número de sabores permitido");
         event.preventDefault(); // interrompe a submissao do form
     }

@@ -84,3 +84,7 @@ INSERT INTO tamanho values (NULL, "p", "Pequena", 2, 40);
 INSERT INTO tamanho values (NULL, "m", "Média", 2, 45);
 INSERT INTO tamanho values (NULL, "g", "Grande", 3, 55);
 INSERT INTO tamanho values (NULL, "gg", "Gigante", 4, 68);
+
+
+/* inserindo uma cliente com senha cli123 */
+INSERT INTO cliente VALUES (NULL, "Maria Joana", "maria@gmail.com", "111111", "2000-02-01", "$2y$10$L.AfIDkigTTNjCJL7i6wZ.288kMqc1Byz.kcfOVaPok2JfsN6wgtC", "Rua X", "Centro", 1, 0, 0, NULL);

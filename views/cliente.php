@@ -2,7 +2,7 @@
         <!-- conteúdo específico -->
         <h2>Área do Cliente</h2>
         <hr>
-        <form method="POST" action="#">
+        <form method="POST" action="index.php?acao=login">
             <fieldset>
                 <legend>Acesse sua conta</legend>
                 <div>
@@ -18,6 +18,13 @@
                     </label>
                 </div>
                 <br>
+                <div class="erro_form">
+                    <?php
+                    if(isset($_GET['erro']) && $_GET['erro'] == 1)
+                        echo "Dados de acesso inválidos!<br><br>";
+                    ?>
+
+                </div>
                 <div>
                     <input type="submit" value="Acessar minha conta">
                     <input type="reset" value="Limpar campos">
