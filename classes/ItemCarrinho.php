@@ -1,5 +1,5 @@
 <?php
-    class PizzaCarrinho{
+    class ItemCarrinho{
         private $codTamanho;
         private $nomeTamanho;
         private $preco;

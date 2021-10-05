@@ -2,7 +2,7 @@
             <!-- conteúdo específico -->
             <h2>Faça seu pedido</h2>
             <hr>
-            <form id="form_pedido" method="post" action="index.php?acao=addcarrinho">
+            <form id="form_pedido" method="post" action="index.php?acao=addCarrinho">
                 <label for="tamanho">Selecione o tamanho da pizza:</label>
                 <select name="tamanho" id="tamanho">
                     <option value="">---- Selecione ----</option>

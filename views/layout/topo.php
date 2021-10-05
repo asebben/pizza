@@ -27,7 +27,10 @@ session_start();
                 echo "Olá, visitante! (<a href='index.php?acao=cliente'>entrar</a>)";
             ?>
             &nbsp;&nbsp;
-            <a href="index.php?acao=carrinho">meu carrinho</a>
+            <a href="index.php?acao=carrinho">
+                meu carrinho
+                <?=isset($_SESSION['cart'])? " (".count($_SESSION['cart']).")" : " (0)"; ?>
+            </a>
         </div>
         <div id="menu_topo_mobile">
             <span class="material-icons">

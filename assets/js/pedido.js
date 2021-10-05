@@ -27,7 +27,8 @@ function selectSize(){
         req.onreadystatechange = function(){
             if (this.readyState == 4 && this.status == 200){
                 let dados = JSON.parse(this.responseText);
-                document.getElementById("mostraPreco").innerHTML = dados.preco;
+                numOpcoes = dados.numOpcoes;
+                document.getElementById("mostraPreco").innerHTML = parseFloat(dados.preco).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
                 document.getElementById("limiteSabores").innerHTML = dados.numOpcoes;
                 document.getElementById("preco").value = dados.preco;
                 document.getElementById("codTamanho").value = dados.codigo;

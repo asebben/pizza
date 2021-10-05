@@ -59,7 +59,7 @@ CREATE TABLE itemPedido (
   sabor2 INTEGER,
   sabor3 INTEGER,
   sabor4 INTEGER,
-  quantidade INTEGER,
+  borda VARCHAR(20),
   valor REAL,
   FOREIGN KEY (codPedido) REFERENCES pedido(codigo),
   FOREIGN KEY (codTamanho) REFERENCES tamanho(codigo),
